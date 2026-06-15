@@ -2,30 +2,33 @@ import os
 import time
 from datetime import datetime
 
-# Definisce la cartella di output
+# 1. Configurazione della cartella di destinazione
 output_dir = './in'
 
-# Crea la cartella se non esiste
+# Crea la cartella se non esiste ancora nel path corrente
 os.makedirs(output_dir, exist_ok=True)
 
-print(print(f"Script avviato. Scrittura di file nella cartella '{output_dir}' ogni 10 secondi."))
-print("Premi CTRL+C per interrompere.")
+print(f"Script avviato. Scrittura di file nella cartella '{output_dir}' ogni 10 secondi.")
+print("Premi CTRL+C per interrompere l'esecuzione.")
 
 try:
     while True:
-        # Genera il timestamp per il nome del file (es: 2026-05-20_12-49-00.txt)
+        # 2. Generazione del timestamp per garantire nomi di file univoci
+        # Esempio di output: 2026-06-15_12-30-00.txt
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         filename = f"{timestamp}.txt"
         filepath = os.path.join(output_dir, filename)
 
-        # Scrive il file
+        # 3. Creazione del file e scrittura del contenuto (log interno)
         with open(filepath, 'w') as file:
             file.write(f"File creato il {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}")
             
-        print(f"Creato: {filename}")
+        # Log dell'operazione stampato direttamente in console
+        print(f"Creato con successo: {filename}")
 
-        # Attende 10 secondi prima del ciclo successivo
+        # 4. Pausa di 10 secondi prima del ciclo successivo
         time.sleep(10)
 
 except KeyboardInterrupt:
-    print("\nScript terminato dall'utente.")
+    # Gestisce la chiusura manuale con CTRL+C evitando di mostrare l'errore di crash in console
+    print("\nScript terminato correttamente dall'utente.")
