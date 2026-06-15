@@ -9,7 +9,6 @@ Lo script controlla ogni 10 secondi la cartella ./in.
 Se trova dei file, li sposta nella cartella ./processing.
 Ogni operazione viene loggata su console.
 """
-
 import os
 import time
 import shutil
